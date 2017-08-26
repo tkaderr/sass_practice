@@ -1,6 +1,8 @@
-@import "variables";
+@import "partials/variables";
+@import "partials/mixins";
 
-@import "mixins";
+@include google-font("Alegraya+Sans");
+@include google-font("Titillium+Web");
 
 //you can add mixin at the root level where all <a> will receive that mixin css
 @include fancy-links;
@@ -27,13 +29,23 @@ a {
 	color: $link-color;
 }
 
+//only in ie6 will the styling be affected
+@include apply-to-ie-6 {
+	body {
+		font-size: 125%;
+	}
+}
+
 .warning-button {
 	@include warning;
 	padding: 8px 12px;
 }
 
+//if you have defaults setup you dont have to specify the values passed
+//however, if you pass for a second argument, but the not the first one, you have to specify the explicit variable/argument name
 #header {
-	@include box;
+	@include box($border: 1px solid black);
+	@include box-shadow(2px 0px 4px #999, 1px 1px 6px $secondary-color);
 	height: $header-height;
 	background-color: $theme-color;
 

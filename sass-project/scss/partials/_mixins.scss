@@ -1,0 +1,54 @@
+
+@mixin google-font($font){
+
+//interpolation at the end of the url can be only allowed for css, not sass or scss
+	$font: unquote($font);
+	@import url(https://fonts.googleapis.com/css?family=#{$font})
+
+
+}
+
+
+@mixin warning {
+	background-color: orange;
+	color: white;
+}
+
+
+@mixin large-text {
+	//basically prefix font- so you can use any properties after the prefix
+	font: {
+		size: 22px;
+		weight: bold;
+	}
+}
+
+@mixin apply-to-ie-6 {
+	* html {
+		@content;
+	}
+}
+
+//var arg- specify one shadow after another for example
+@mixin box-shadow($shadows...){
+	box-sizing: $shadows;
+	-moz-box-shadow: $shadows;
+	-webkit-box-shadow: $shadows;
+}
+
+//you can include a default value by adding a colon and default val next to the parameter
+@mixin rounded($radius: 6px) {
+	border-radius: $radius;
+}
+
+@mixin box($radius: 6px, $border: 1px solid black) {
+	@include rounded($radius);
+	border: $border;
+}
+
+@mixin fancy-links {
+	a {
+		font-style: italic;
+		text-decoration: none;
+	}
+}
