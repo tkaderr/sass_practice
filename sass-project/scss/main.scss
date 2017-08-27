@@ -1,5 +1,7 @@
+@import "partials/functions";
 @import "partials/variables";
 @import "partials/mixins";
+
 
 @include google-font("Alegraya+Sans");
 @include google-font("Titillium+Web");
@@ -10,6 +12,10 @@
 body {
   font-family: sans-serif;
   color: $text-color;
+  font-size: em(18px);
+  @include large-screens{
+  	font-size: 125%;
+  }
 }
 
 h1, h2, h3, h4 {
@@ -69,11 +75,29 @@ a {
 #main {
 	
 	width: $content-width;
+	@include large-screens {
+		width: auto;
+		max-width: $content-width;
+	}
 	margin: 0 auto;
   #content {
+  	float: left;
+  	width: 6*$col;
   }
 
   #sidebar {
+  	float: right;
+  	width: 2 *$col;
+
+  	li {
+  		list-style-type: none;
+  		padding: em(16px) em(20px);
+  		border-bottom: 1px dashed #999;
+
+  		&:hover {
+  			background-color: #efefef;
+  		}
+  	}
   }
 }
 
